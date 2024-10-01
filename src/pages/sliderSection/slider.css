@@ -1,0 +1,89 @@
+.SliderSection {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lower {
+  display: flex;
+  gap: 13px;
+  margin-top: 90px;
+  overflow-x: auto;
+  position: relative;
+  scrollbar-width: none;
+  flex-wrap: nowrap;
+}
+
+/* Main container */
+.lowerSection {
+  position: static;
+  width: 1410px;
+  height: 350px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* First child */
+.lowerSection div:nth-child(1) {
+  height: 100%;
+  width: 40%;
+  max-width: 600px; /* Set a max width to prevent shrinking */
+}
+
+/* Image inside first child */
+.lowerSection div:nth-child(1) img {
+  height: inherit;
+  width: 100%;
+  object-fit: fill; /* Keep the image aspect ratio */
+}
+
+/* Second child */
+.lowerSection div:nth-child(2) {
+  height: 100%;
+  width: 26%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Images inside second child */
+.lowerSection div:nth-child(2) img:nth-child(1) {
+  width: 100%;
+  height: 47%;
+}
+
+.lowerSection div:nth-child(2) img:nth-child(2) {
+  width: 135%;
+  height: 50%;
+  margin-left: -132px;
+}
+
+/* Third child */
+.lowerSection div:nth-child(3) {
+  height: 100%;
+  width: 32%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+/* Images inside third child */
+.lowerSection div:nth-child(3) img:nth-child(1) {
+  width: 100%;
+  height: 63.5%;
+}
+
+.lowerSection div:nth-child(3) img:nth-child(2) {
+  width: 100%;
+  height: 33.5%;
+}

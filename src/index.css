@@ -1,13 +1,41 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: "TurretBold";
+  src: url("/public/fontfamily/TurretRoad-Bold.ttf") format("truetype")
+    format("truetype");
+}
+@font-face {
+  font-family: "TurretMedium";
+  src: url("/public/fontfamily/TurretRoad-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "WotkSansMedium";
+  src: url("/public/fontfamily/WorkSans-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "WorkSansRegular";
+  src: url("/public/fontfamily/WorkSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "DarkerGrotesqueBold";
+  src: url("/public/fontfamily/DarkerGrotesque-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "DarkerGrotesqueSemoBold";
+  src: url("/public/fontfamily/DarkerGrotesque-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "DarkerGrotesqueMedium";
+  src: url("/public/fontfamily/DarkerGrotesque-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "DarkerGrotesqueRegular";
+  src: url("/public/fontfamily/DarkerGrotesque-Regular.ttf") format("truetype");
 }
