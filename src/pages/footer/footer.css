@@ -6,6 +6,9 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  padding-left: 80px;
+  padding-right: 80px;
 }
 
 .footer_bootom {
@@ -13,13 +16,12 @@ footer {
   width: 100%;
   height: auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  gap: 600px;
 
   margin: 50px 0 50px 0;
-  padding-left: 80px;
-  padding-right: 80px;
 }
 
 .footerSection1 {
@@ -110,7 +112,7 @@ footer {
 @media screen and (max-width: 875px) {
   .footer_bootom {
     flex-direction: column;
-    gap: 40px;
+    gap: 40px !important;
   }
   .footerSection1 {
     width: 100%;
@@ -124,5 +126,12 @@ footer {
 @media screen and (max-width: 306px) {
   .footerSection2 {
     flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .footer_bootom {
+    gap: 0px;
+    justify-content: space-between;
   }
 }

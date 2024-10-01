@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -7,28 +8,39 @@ import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
+import { Menu, MenuItem } from "@mui/material";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
 
-const pages = ["Learn", "Build", "Product", "Community"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
-
 function Navbar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const pages = ["Learn", "Build", "Product", "Community"];
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
+  // For desktop menu
+  const [anchorEl, setAnchorEl] = useState(null); // For desktop menu options dropdown
+  const [selectedPage, setSelectedPage] = useState(null); // Track selected desktop page
+
+  // For mobile menu
+  const [mobileAnchorEl, setMobileAnchorEl] = useState(null); // For mobile dropdown
+
+  // Handle click for desktop menu button
+  const handleDesktopMenuClick = (event, page) => {
+    setAnchorEl(event.currentTarget);
+    setSelectedPage(page); // Set the selected page
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  // Handle closing of desktop dropdown
+  const handleDesktopMenuClose = () => {
+    setAnchorEl(null);
+    setSelectedPage(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+  // Handle click for mobile menu icon
+  const handleMobileMenuClick = (event) => {
+    setMobileAnchorEl(event.currentTarget); // Set anchor element for mobile menu
+  };
+
+  // Handle closing of mobile dropdown
+  const handleMobileMenuClose = () => {
+    setMobileAnchorEl(null); // Close the mobile dropdown
   };
 
   return (
@@ -72,10 +84,10 @@ function Navbar() {
           {/* Mobile Menu and Logo Layout */}
           <Box
             sx={{
-              display: { xs: "flex", md: "none" }, // Use flexbox layout
-              alignItems: "center", // Vertically align both items
-              justifyContent: "space-between", // Logo on left, menu on right
-              width: "100%", // Make sure it takes full width
+              display: { xs: "flex", md: "none" }, // Show only on mobile view
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "100%",
             }}
           >
             {/* Left-aligned Logo */}
@@ -100,35 +112,68 @@ function Navbar() {
             {/* Right-aligned Menu Icon */}
             <IconButton
               size="large"
-              aria-label="account of current user"
+              aria-label="menu"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={handleMobileMenuClick} // Trigger mobile menu open on click
               sx={{ color: "white" }}
             >
               <MenuIcon sx={{ color: "white" }} />
             </IconButton>
+
+            {/* Dropdown menu for mobile */}
+            <Menu
+              anchorEl={mobileAnchorEl}
+              open={Boolean(mobileAnchorEl)} // Open only mobile menu
+              onClose={handleMobileMenuClose} // Close the menu on clicking outside or an item
+              PaperProps={{
+                style: {
+                  width: "200px", // Adjust menu width if needed
+                },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleMobileMenuClose}>
+                  {page}
+                </MenuItem>
+              ))}
+            </Menu>
           </Box>
 
           {/* Desktop Menu */}
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{
-                  my: 2,
-                  color: "rgba(255, 255, 255, 1)",
-                  display: "flex", // Display as flexbox
-                  alignItems: "center", // Vertically center the content
-                  justifyContent: "center", // Horizontally center the content (optional based on layout)
-                  fontFamily: "WotkSansMedium, sans-serif",
-                  fontSize: 17,
-                }}
-              >
-                {page}
-                <KeyboardArrowDownSharpIcon sx={{ ml: 1 }} variant="outlined" />
-              </Button>
+              <React.Fragment key={page}>
+                <Button
+                  onClick={(event) => handleDesktopMenuClick(event, page)}
+                  sx={{
+                    my: 2,
+                    color: "rgba(255, 255, 255, 1)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontFamily: "WorkSansMedium, sans-serif",
+                    fontSize: 17,
+                  }}
+                >
+                  {page}
+                  <KeyboardArrowDownSharpIcon sx={{ ml: "5px" }} />
+                </Button>
+
+                {/* Options dropdown for the clicked page in desktop */}
+                <Menu
+                  anchorEl={anchorEl}
+                  open={Boolean(anchorEl) && selectedPage === page} // Open only for the selected page
+                  onClose={handleDesktopMenuClose}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                >
+                  <MenuItem onClick={handleDesktopMenuClose}>Option 1</MenuItem>
+                  <MenuItem onClick={handleDesktopMenuClose}>Option 2</MenuItem>
+                  <MenuItem onClick={handleDesktopMenuClose}>Option 3</MenuItem>
+                </Menu>
+              </React.Fragment>
             ))}
           </Box>
         </Toolbar>
