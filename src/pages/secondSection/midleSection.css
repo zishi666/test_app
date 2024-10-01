@@ -101,10 +101,6 @@
 .socialSection div:nth-child(1) img {
   width: 26px;
   height: 19px;
-  top: 13px;
-  left: 120px;
-  gap: 0px;
-  opacity: 0px;
 }
 
 .socialSection div:nth-child(2) {
